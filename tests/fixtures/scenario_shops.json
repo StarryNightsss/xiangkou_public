@@ -1,0 +1,11 @@
+{
+  "description": "合成店铺，仅用于可复现的失败注入评测，不代表真实点评数据",
+  "types": [{"id": 1, "name": "美食"}],
+  "search": [
+    {"id": 101, "name": "测试餐厅甲", "typeId": 1, "area": "运河上街", "address": "运河上街 1 号", "avgPrice": 80, "score": 47},
+    {"id": 102, "name": "测试餐厅乙", "typeId": 1, "area": "运河上街", "address": "运河上街 2 号", "avgPrice": null, "score": 48}
+  ],
+  "details": {
+    "102": {"id": 102, "name": "测试餐厅乙", "typeId": 1, "area": "运河上街", "address": "运河上街 2 号", "avgPrice": 180, "score": 48}
+  }
+}

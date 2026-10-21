@@ -1,0 +1,36 @@
+# Python
+.venv/
+.env
+__pycache__/
+.pytest_cache/
+.ruff_cache/
+*.pyc
+
+# 生产环境变量（含密钥，不进库）
+deploy/.env
+
+# 运行时数据（SQLite、备份）
+data/
+
+# 前端
+frontend/node_modules/
+frontend/dist/
+
+# Java 构建产物
+services/dianping/target/
+
+# 点评图片与上传文件（运行时生成，不入库；只保留占位文件）
+nginx-html/imgs/*
+!nginx-html/imgs/.gitkeep
+
+# IDE
+.idea/
+*.iml
+.vscode/
+
+# macOS / Windows
+.DS_Store
+Thumbs.db
+
+# 本地学习笔记、历史报告、简历草稿（不提交）
+_private/

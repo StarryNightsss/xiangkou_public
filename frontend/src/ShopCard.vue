@@ -1,0 +1,5 @@
+<script setup lang="ts">
+import {imageUrl,money} from './api'
+defineProps<{shop:any}>();const emit=defineEmits(['buy','detail'])
+</script>
+<template><article class="shop-card"><img v-if="imageUrl(shop.image||shop.images)" :src="imageUrl(shop.image||shop.images)" alt="店铺图片" loading="lazy" @error="($event.target as HTMLImageElement).style.display='none'"><div class="shop-content"><div class="row"><h3>{{shop.name}}</h3><span class="rating">{{shop.score==null?'暂无评分':(shop.avg_price!==undefined?shop.score:shop.score/10)}} 分</span></div><p class="muted small">{{shop.area||shop.address}} · 人均 ¥{{shop.avg_price??shop.avgPrice??'待核实'}}</p><p class="small" v-if="shop.reason">{{shop.reason}}</p><div class="coupon" v-for="c in (shop.coupons||[]).slice(0,3)" :key="c.id"><div><small>{{c.title}}</small><div class="price">¥{{money(c.payValue)}} <del>¥{{money(c.actualValue)}}</del></div></div><button class="outline" :disabled="c.orderable===false" @click="emit('buy',c)">{{c.payValue===0?'领取':c.type===1?'秒杀下单':'购买'}}</button></div><button class="text-button" @click="emit('detail',shop.id)">店铺详情 →</button></div></article></template>

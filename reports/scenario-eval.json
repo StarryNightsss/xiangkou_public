@@ -1,0 +1,48 @@
+{
+  "dataset": "synthetic",
+  "case_count": 5,
+  "pass_count": 5,
+  "constraint_violations": 0,
+  "cases": [
+    {
+      "name": "正常找店",
+      "passed": true,
+      "issues": [],
+      "status": "ok",
+      "tool_calls": 3,
+      "event_count": 13
+    },
+    {
+      "name": "价格硬约束",
+      "passed": true,
+      "issues": [],
+      "status": "ok",
+      "tool_calls": 3,
+      "event_count": 13
+    },
+    {
+      "name": "缺失字段补查后拒绝",
+      "passed": true,
+      "issues": [],
+      "status": "no_results",
+      "tool_calls": 3,
+      "event_count": 12
+    },
+    {
+      "name": "缺少位置",
+      "passed": true,
+      "issues": [],
+      "status": "needs_location",
+      "tool_calls": 0,
+      "event_count": 4
+    },
+    {
+      "name": "上游故障",
+      "passed": true,
+      "issues": [],
+      "status": "upstream_error",
+      "tool_calls": 1,
+      "event_count": 6
+    }
+  ]
+}

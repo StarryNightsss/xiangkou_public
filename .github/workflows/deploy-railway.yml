@@ -1,0 +1,47 @@
+name: Deploy (Railway)
+
+# 可选 CD：不用 Railway 的 GitHub 自动部署时，用这个 workflow 手动发布。
+# 需要仓库 Secrets：RAILWAY_TOKEN（Railway Project Token）
+# 需要仓库 Variables：RAILWAY_PROJECT_ID（可选，用于显式指定项目）
+on:
+  workflow_dispatch:
+    inputs:
+      service:
+        description: "要部署的服务：all / app / go-api"
+        required: true
+        default: all
+
+concurrency:
+  group: railway-deploy
+  cancel-in-progress: false
+
+jobs:
+  deploy:
+    name: railway up
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+
+      - name: Install Railway CLI
+        run: npm i -g @railway/cli
+
+      - name: Deploy
+        env:
+          RAILWAY_TOKEN: ${{ secrets.RAILWAY_TOKEN }}
+          PROJECT_ID: ${{ vars.RAILWAY_PROJECT_ID }}
+          TARGET: ${{ inputs.service }}
+        run: |
+          set -e
+          if [ -n "$PROJECT_ID" ]; then
+            railway link --project "$PROJECT_ID" --environment production
+          fi
+          if [ "$TARGET" = "all" ] || [ "$TARGET" = "go-api" ]; then
+            railway up --service go-api --environment production --ci
+          fi
+          if [ "$TARGET" = "all" ] || [ "$TARGET" = "app" ]; then
+            railway up --service app --environment production --ci
+          fi

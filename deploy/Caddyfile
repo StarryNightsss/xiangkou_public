@@ -1,0 +1,14 @@
+{$DOMAIN} {
+	encode gzip
+
+	# 上传的探店图片：与 Java 容器共用的 uploads 卷
+	handle /imgs/* {
+		root * /srv
+		file_server
+	}
+
+	# 其余全部交给 Agent（同时托管前端构建产物）
+	reverse_proxy app:8090 {
+		header_up X-Forwarded-Proto https
+	}
+}

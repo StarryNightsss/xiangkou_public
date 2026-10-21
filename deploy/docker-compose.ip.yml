@@ -1,0 +1,9 @@
+# 临时用「IP:8090」访问（备案完成前用）
+# 用法：
+#   docker compose -f deploy/docker-compose.prod.yml -f deploy/docker-compose.ip.yml \
+#     --env-file deploy/.env up -d
+# 注意：这只适合临时验收；正式上线请用域名 + Caddy（bootstrap.sh 带 DOMAIN 即可）。
+services:
+  app:
+    ports:
+      - "8090:8090"

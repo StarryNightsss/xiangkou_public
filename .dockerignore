@@ -1,0 +1,15 @@
+# 构建上下文裁剪：只保留镜像真正需要的内容
+.git
+.github
+.venv
+_private
+data
+node_modules
+**/node_modules
+frontend/dist
+services/dianping/target
+nginx-html
+*.log
+__pycache__
+.pytest_cache
+.ruff_cache
